@@ -1,12 +1,3 @@
-// function flip(array, n) {
-//     return array;
-// }
-
-// // Use only flip() here to manipulate the array
-// function pancakeSort(array) {
-//     return array;
-// }
-
 function swap(array, left, right) {
     let temp = array[left];
     array[left] = array[right];
