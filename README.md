@@ -26,6 +26,27 @@ element into its correct position.
 ## Runtime Analysis
 
 What is the asymptotic runtime ($\Theta$) of your algorithm in terms of the
-number of comparisons? What is it in terms of the number of flips? Add your
-answer to this markdown file.
+number of comparisons? What is it in terms of the number of flips? Add your answer to this markdown file.
+
+## Answer
+
+### Number of Comparisons
+
+#### TL;DR
+The implementations number of comparisons is an element of $\mathrm{\Theta}(n^{2})$.
+
+#### Reasoning
+
+Since we initialize the `maxIndex` value in the `pancakeSort` function to be the largest *(rightmost)* element of the array, we know that `findMaxIndex` will always consider the entire input array at least once. That is, `findMaxIndex` is an element of $\mathrm{\Theta}(n)$. From there, the `while` loop has another `findMaxIndex` call nested within it, except the input size is decremented by exactly $1$ each time the `while` loop iterates. Since the `while` loop will continue to iterate until the `size` value is equal to $0$ but starts at the maximum input size $n$, we can expect the `while` loop to iterate approximately $n$ times disregarding any and all lower order terms. 
+
+Therefore, the time function for `pancakeSort` is $\mathrm{T}(n) \approx n * n \implies \mathrm{T}(n) \approx n^{2}$. Note that I use the "$\approx$" symbol because I am dropping all constants and lower order terms for the sake of simplicity. In conclusion, we can contrive that the `pancakeSort` function is an element of $\mathrm{\Theta}(n^{2})$ since the `findMaxElement` function will be called $n$ times and take $n$ steps to complete each time. 
+
+### Number of Flips
+
+#### TL;DR
+The implementations number of flips is an element of $\mathrm{\Theta}(n)$.
+
+#### Reasoning
+
+The number of flips is notably easier to discern since there are only two calls of the `flip` function in the implementation. The way `flip` operates, it will always take $n - c$ steps to complete where $n$ is the arbitrary size of the input array and $c$ is the difference between the `n` argument passed into `flip` and the value of `array.length`. Since the maximum value of $c$ is equal to the value of $n$, $c$ is asymptotically negligible which means that `flip` will always be an element of $\mathrm{\Theta}(n)$ each time the function is called. Since the only two calls of `flip` happen sequentially within the `while` loop, the number of flips can be modeled as: $\mathrm{F}(n) \approx n + n \implies \mathrm{F}(n) \approx 2n \implies \mathrm{F}(n) \in \mathrm{\Theta}(n)$.
 
